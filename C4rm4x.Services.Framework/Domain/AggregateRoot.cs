@@ -17,7 +17,7 @@ namespace C4rm4x.Services.Framework
         /// <summary>
         /// Gets the aggregate root ID
         /// </summary>
-        public TKey ID { get; }
+        public abstract TKey ID { get; }
 
         /// <summary>
         /// Constructor

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
@@ -27,6 +28,11 @@ namespace C4rm4x.Services.Persistence.EF
     {
         private readonly DbSet<TEntity> _set;
         private readonly DbContext _entities;
+
+        /// <summary>
+        /// Gets the DbQuery with tracking disabled
+        /// </summary>
+        protected DbQuery<TEntity> Query => _set.AsNoTracking();
    
         /// <summary>
         /// Constructor

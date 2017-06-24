@@ -13,14 +13,9 @@ namespace C4rm4x.Services.Persistence.ADO
     {
         public SqlCommand InnerCommand { get; private set; }
 
-        public InternalSqlCommand(
-            string function,
-            InternalSqlConnection connection,
-            SqlTransaction transaction = null)
+        public InternalSqlCommand(string function, InternalSqlConnection connection)
         {
             InnerCommand = new SqlCommand(function, connection.InnerConnection);
-
-            if (transaction != null) InnerCommand.Transaction = transaction;
         }
 
         public void Dispose()

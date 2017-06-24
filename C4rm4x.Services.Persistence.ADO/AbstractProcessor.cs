@@ -129,6 +129,19 @@ namespace C4rm4x.Services.Persistence.ADO
             return Get(name, value, SqlDbType.Bit);
         }
 
+        /// <summary>
+        /// Creates a parameter of type UniqueIdentifier
+        /// </summary>
+        /// <param name="name">Parameter name</param>
+        /// <param name="value">The value</param>
+        /// <returns>The parameter of type UniqueIdentifier and value</returns>
+        protected static SqlParameter Get(
+            string name,
+            Guid value)
+        {
+            return Get(name, value, SqlDbType.UniqueIdentifier);
+        }
+
         private static SqlParameter Get(
             string name,
             object value,

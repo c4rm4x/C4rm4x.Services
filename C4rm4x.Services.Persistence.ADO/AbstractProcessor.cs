@@ -4,6 +4,7 @@ using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 #endregion
 
@@ -38,7 +39,7 @@ namespace C4rm4x.Services.Persistence.ADO
         /// <param name="function">The store procedure name</param>
         /// <param name="transaction">The transaction (if any)</param>
         /// <param name="parameters">Collection of parameters</param>
-        protected void Run(
+        protected Task RunAsync(
             string function,
             SqlTransaction transaction = null,
             params SqlParameter[] parameters)
@@ -47,7 +48,7 @@ namespace C4rm4x.Services.Persistence.ADO
             {
                 using (var command = new InternalSqlCommand(function, connection, transaction))
                 {
-                    command.ExecuteNonQuery(parameters);
+                    return command.ExecuteNonQueryAsync(parameters);
                 }
             }
         }

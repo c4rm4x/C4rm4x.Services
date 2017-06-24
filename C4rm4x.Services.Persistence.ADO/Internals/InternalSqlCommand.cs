@@ -3,6 +3,7 @@
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 #endregion
 
@@ -28,13 +29,13 @@ namespace C4rm4x.Services.Persistence.ADO
             InnerCommand.Dispose();
         }
 
-        public int ExecuteNonQuery(
+        public Task<int> ExecuteNonQueryAsync(
             params SqlParameter[] parameters)
         {
             InnerCommand.Parameters.AddRange(parameters);
 
             InnerCommand.CommandType = CommandType.StoredProcedure;
-            return InnerCommand.ExecuteNonQuery();
+            return InnerCommand.ExecuteNonQueryAsync();
         }
     }
 }

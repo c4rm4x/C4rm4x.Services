@@ -10,14 +10,11 @@ namespace C4rm4x.Services.Framework
     /// <summary>
     /// Aggregate root (DDD)
     /// </summary>
-    public abstract class AggregateRoot<TKey>
+    public abstract class AggregateRoot
     {
         private readonly ICollection<EventData> _events;
 
-        /// <summary>
-        /// Gets the aggregate root ID
-        /// </summary>
-        public abstract TKey ID { get; }
+        public abstract object RootID { get; }
 
         /// <summary>
         /// Constructor
@@ -46,7 +43,7 @@ namespace C4rm4x.Services.Framework
 
             foreach (var @event in events)
             {
-                @event.ID = ID;
+                @event.ID = RootID;
             }
 
             _events.Clear();

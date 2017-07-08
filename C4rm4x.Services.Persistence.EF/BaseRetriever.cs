@@ -82,7 +82,7 @@ namespace C4rm4x.Services.Persistence.EF
         public Task<List<TEntity>> ExecuteQueryAsync(
             string queryName, params SqlParameter[] parameters)
         {
-            return _set.SqlQuery(BuildQuery(queryName, parameters)).AsNoTracking().ToListAsync();
+            return _set.SqlQuery(BuildQuery(queryName, parameters), parameters).AsNoTracking().ToListAsync();
         }
 
         private static string BuildQuery(string queryName, SqlParameter[] parameters)

@@ -38,13 +38,13 @@ namespace C4rm4x.Services.Persistence.ADO
         /// </summary>
         /// <param name="function">The store procedure name</param>
         /// <param name="parameters">Collection of parameters</param>
-        protected Task RunAsync(string function, params SqlParameter[] parameters)
+        protected async Task RunAsync(string function, params SqlParameter[] parameters)
         {
             using (var connection = new InternalSqlConnection(ConnectionString))
             {
                 using (var command = new InternalSqlCommand(function, connection))
                 {
-                    return command.ExecuteNonQueryAsync(parameters);
+                    await command.ExecuteNonQueryAsync(parameters);
                 }
             }
         }

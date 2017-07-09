@@ -69,7 +69,7 @@ namespace C4rm4x.Services.Persistence.EF
         /// <param name="predicate">The predicate</param>
         /// <returns>The first occurence when at leas one instance fulfills the predicate; null, otherwise</returns>
         public Task<TEntity> RetrieveAsync(Expression<Func<TEntity, bool>> predicate)
-        {
+        {            
             return _set.AsNoTracking().FirstOrDefaultAsync(predicate);
         }
 
@@ -79,10 +79,23 @@ namespace C4rm4x.Services.Persistence.EF
         /// <param name="queryName">SQL command or store procedure name</param>
         /// <param name="parameters">The parameters</param>
         /// <returns>A collection of TEntity returned by the SQL command</returns>
-        public Task<List<TEntity>> ExecuteQueryAsync(
+        protected Task<List<TEntity>> ExecuteQueryAsync(
             string queryName, params SqlParameter[] parameters)
         {
             return _set.SqlQuery(BuildQuery(queryName, parameters), parameters).AsNoTracking().ToListAsync();
+        }
+
+        /// <summary>
+        /// Executes the SP that returns a collection of entities of given type
+        /// </summary>
+        /// <typeparam name="T">The type of the entities</typeparam>
+        /// <param name="queryName">SQL command or store procedure name</param>
+        /// <param name="parameters">The parameters</param>
+        /// <returns>A collection of T returned by the SQL command</returns>
+        protected Task<List<T>> ExecuteQueryAsync<T>(
+            string queryName, params SqlParameter[] parameters)
+        {
+            return _entities.Database.SqlQuery<T>(BuildQuery(queryName, parameters), parameters).ToListAsync();
         }
 
         private static string BuildQuery(string queryName, SqlParameter[] parameters)

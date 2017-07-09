@@ -85,19 +85,6 @@ namespace C4rm4x.Services.Persistence.EF
             return _set.SqlQuery(BuildQuery(queryName, parameters), parameters).AsNoTracking().ToListAsync();
         }
 
-        /// <summary>
-        /// Executes the SP that returns a collection of entities of given type
-        /// </summary>
-        /// <typeparam name="T">The type of the entities</typeparam>
-        /// <param name="queryName">SQL command or store procedure name</param>
-        /// <param name="parameters">The parameters</param>
-        /// <returns>A collection of T returned by the SQL command</returns>
-        protected Task<List<T>> ExecuteQueryAsync<T>(
-            string queryName, params SqlParameter[] parameters)
-        {
-            return _entities.Database.SqlQuery<T>(BuildQuery(queryName, parameters), parameters).ToListAsync();
-        }
-
         private static string BuildQuery(string queryName, SqlParameter[] parameters)
         {
             return string.Format("exec {0} {1}", queryName,

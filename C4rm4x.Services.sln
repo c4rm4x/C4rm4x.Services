@@ -21,6 +21,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "C4rm4x.Services.Persistence
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "C4rm4x.Services.Framework.SimpleInjector.Extensions", "C4rm4x.Services.Framework.SimpleInjector.Extensions\C4rm4x.Services.Framework.SimpleInjector.Extensions.csproj", "{EF1942E2-E244-4B3C-AC70-47CE8D4034CB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "C4rm4x.Services.Persistence.SqlBulkCopy", "C4rm4x.Services.Persistence.SqlBulkCopy\C4rm4x.Services.Persistence.SqlBulkCopy.csproj", "{6D70B680-19F0-46BB-BA3D-2AAC58519430}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Messaging", "Messaging", "{778DC54C-C3F6-4CA6-A8EA-5950120A68C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "C4rm4x.Services.Messaging.ServiceBus", "C4rm4x.Services.Messaging.ServiceBus\C4rm4x.Services.Messaging.ServiceBus.csproj", "{1C54AB6E-A987-445E-840E-A1095E02D3DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +57,14 @@ Global
 		{EF1942E2-E244-4B3C-AC70-47CE8D4034CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF1942E2-E244-4B3C-AC70-47CE8D4034CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF1942E2-E244-4B3C-AC70-47CE8D4034CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D70B680-19F0-46BB-BA3D-2AAC58519430}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D70B680-19F0-46BB-BA3D-2AAC58519430}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D70B680-19F0-46BB-BA3D-2AAC58519430}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D70B680-19F0-46BB-BA3D-2AAC58519430}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C54AB6E-A987-445E-840E-A1095E02D3DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C54AB6E-A987-445E-840E-A1095E02D3DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C54AB6E-A987-445E-840E-A1095E02D3DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C54AB6E-A987-445E-840E-A1095E02D3DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,5 +74,7 @@ Global
 		{5C1382F0-2F8E-4B80-9352-8F5B9AE0AF81} = {AA25C681-6708-4027-84B5-8FE5439D1AF2}
 		{36E869A3-4850-45A3-AD78-887BD7E772C5} = {10D5709A-1DD2-4F5E-B443-DA9B5948CD23}
 		{41F2DDC8-3FC7-42BB-99AD-C0F544A9B188} = {10D5709A-1DD2-4F5E-B443-DA9B5948CD23}
+		{6D70B680-19F0-46BB-BA3D-2AAC58519430} = {10D5709A-1DD2-4F5E-B443-DA9B5948CD23}
+		{1C54AB6E-A987-445E-840E-A1095E02D3DD} = {778DC54C-C3F6-4CA6-A8EA-5950120A68C1}
 	EndGlobalSection
 EndGlobal

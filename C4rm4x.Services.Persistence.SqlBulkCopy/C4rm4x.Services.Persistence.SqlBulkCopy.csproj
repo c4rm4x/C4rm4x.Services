@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{600CCEAF-ED11-456C-A697-B9310659C9D3}</ProjectGuid>
+    <ProjectGuid>{6D70B680-19F0-46BB-BA3D-2AAC58519430}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>C4rm4x.Services.Framework</RootNamespace>
-    <AssemblyName>C4rm4x.Services.Framework</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <RootNamespace>C4rm4x.Services.Persistence.SqlBulkCopy</RootNamespace>
+    <AssemblyName>C4rm4x.Services.Persistence.SqlBulkCopy</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +20,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\C4rm4x.Services.Framework.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,10 +28,15 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\C4rm4x.Services.Framework.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\C4rm4x.Services.Persistence.SqlBulkCopy.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="C4rm4x.Tools.Utilities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\C4rm4x.Tools.Utilities.1.0.0.0\lib\net452\C4rm4x.Tools.Utilities.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -43,26 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes\DomainServiceAttribute.cs" />
-    <Compile Include="Attributes\RepositoryAttribute.cs" />
-    <Compile Include="Attributes\TransformerAttribute.cs" />
-    <Compile Include="Caching\ICache.cs" />
-    <Compile Include="Domain\AggregateRoot.cs" />
-    <Compile Include="Events\AbstractEventHandler.cs" />
-    <Compile Include="Events\EventPublisher.cs" />
-    <Compile Include="Events\IEventHandler.cs" />
-    <Compile Include="Messaging\IBrokeredMessage.cs" />
-    <Compile Include="Messaging\IMessageQueueRetriever.cs" />
-    <Compile Include="Messaging\IMessageQueueSender.cs" />
-    <Compile Include="Persistence\IRetriever.cs" />
-    <Compile Include="Events\EventData.cs" />
-    <Compile Include="Logging\ILog.cs" />
+    <Compile Include="DataTableMapping.cs" />
+    <Compile Include="Internals\BulkUploadToSql.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Transformation\AbstractEnumerableTransformer.cs" />
-    <Compile Include="Transformation\IEnumerableTransformer.cs" />
-    <Compile Include="Transformation\ITransformer.cs" />
+    <Compile Include="SqlBulkUploader.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

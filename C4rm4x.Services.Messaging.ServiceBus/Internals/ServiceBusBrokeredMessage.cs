@@ -4,6 +4,7 @@ using C4rm4x.Services.Framework.Messaging;
 using C4rm4x.Tools.ServiceBus;
 using C4rm4x.Tools.Utilities;
 using Microsoft.ServiceBus.Messaging;
+using System.Threading.Tasks;
 
 #endregion
 
@@ -44,14 +45,14 @@ namespace C4rm4x.Services.Messaging.ServiceBus.Internals
             };
         }
 
-        public void Abandon()
+        public Task AbandonAsync()
         {
-            Message.Abandon();
+            return Message.AbandonAsync();
         }
 
-        public void Complete()
+        public Task CompleteAsync()
         {
-            Message.Complete();
+            return Message.CompleteAsync();
         }
     }
 }

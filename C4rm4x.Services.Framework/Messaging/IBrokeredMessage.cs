@@ -1,4 +1,10 @@
-﻿namespace C4rm4x.Services.Framework.Messaging
+﻿#region Using
+
+using System.Threading.Tasks;
+
+#endregion
+
+namespace C4rm4x.Services.Framework.Messaging
 {
     /// <summary>
     /// Interface that represents a brokered message
@@ -8,12 +14,12 @@
         /// <summary>
         /// Marks the message as complete
         /// </summary>
-        void Complete();
+        Task CompleteAsync();
 
         /// <summary>
         /// Marks the message as failure (re-try availability)
         /// </summary>
-        void Abandon();
+        Task AbandonAsync();
 
         /// <summary>
         /// Gets the content

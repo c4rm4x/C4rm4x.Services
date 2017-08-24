@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 using SqlCopy = System.Data.SqlClient.SqlBulkCopy;
 
 #endregion
@@ -57,12 +58,13 @@ namespace C4rm4x.Services.Persistence.SqlBulkCopy
         /// Upload all the entities as part of the same batch
         /// </summary>
         /// <param name="entities"></param>
-        public void Upload(IEnumerable<TEntity> entities)
+        public Task UploadAsync(IEnumerable<TEntity> entities)
         {
             entities.NotNullOrEmpty(nameof(entities));
 
             Load(entities);
-            Flush();
+
+            return FlushAsync();
         }
 
         private void Load(IEnumerable<TEntity> entities)
@@ -70,17 +72,17 @@ namespace C4rm4x.Services.Persistence.SqlBulkCopy
             Uploader.AddRange(entities);
         }
 
-        private void Flush()
+        private async Task FlushAsync()
         {
             DataTable dataTable;
 
             while (Uploader.NextBatch(out dataTable))
-                WriteToDatabase(dataTable);
+                await WriteToDatabaseAsync(dataTable);
 
             Uploader.Clear();
         }
 
-        private void WriteToDatabase(DataTable dataTable)
+        private async Task WriteToDatabaseAsync(DataTable dataTable)
         {
             using (var connection = new SqlConnection(ConnectionString))
             {
@@ -95,7 +97,7 @@ namespace C4rm4x.Services.Persistence.SqlBulkCopy
 
                 connection.Open();
 
-                bulkCopy.WriteToServer(dataTable);
+                await bulkCopy.WriteToServerAsync(dataTable);
 
                 connection.Close();
             }

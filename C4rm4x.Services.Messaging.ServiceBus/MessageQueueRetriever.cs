@@ -38,13 +38,13 @@ namespace C4rm4x.Services.Messaging.ServiceBus
         /// <param name="numberOfMessages">Number of messages to retrieve</param>
         /// <param name="seconds">Waiting time</param>
         /// <returns>The messages retrieved</returns>
-        public Task<IEnumerable<IBrokeredMessage>> RetrieveAsync(
+        public async Task<IEnumerable<IBrokeredMessage>> RetrieveAsync(
             int numberOfMessages = 1, int seconds = 1)
         {
-            var messages = _client.ReceiveBatch(
+            var messages = await _client.ReceiveBatchAsync(
                 numberOfMessages, new TimeSpan(0, 0, seconds));
 
-            return Task.FromResult(Transform(messages));
+            return Transform(messages);
         }
 
         private static IEnumerable<IBrokeredMessage> Transform(
